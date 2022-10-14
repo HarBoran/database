@@ -1,11 +1,12 @@
-public class execute {
-    String name;
-    int phone;
-    String email;
+//public class execute {
+//    execute{
+//        
 
-    execute(String name, int phone, String email) {
-        this.name = name;
-        this.phone = phone;
-        this.email = email;
-    }
-}
+//
+//        
+//        
+//        
+//        statement.execute("INSERT INTO contacts VALUES('tim', 444, 'tim@email.com')");
+//
+//    } 
+//}

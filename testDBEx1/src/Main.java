@@ -15,7 +15,7 @@ public class Main {
                 "VALUES('" + name + "'," + phone + ",'" + email + "')");
     }
 
-    static String insertValue(String name, int phone, String email){
+    private static String insertValue(String name, int phone, String email){
         return  "INSERT INTO " + TABLE_CONTACTS + " (" + COLUMN_NAME +", " + COLUMN_PHONE +", "  + COLUMN_EMAIL+") " +
                 " VALUES('" + name + "'," + phone + ",'" + email + "')";
     }
@@ -31,9 +31,9 @@ public class Main {
             Statement statement = conn.createStatement();
 
             //execute 메소드 매개변수로 전달받은 SQL문을 수행하는 매소드
-            //데이터 테이블 만들기 명령어는 한번만 실행해야함, 중복되지 않음
             statement.execute("DROP TABLE IF EXISTS " + TABLE_CONTACTS);
 
+            //데이터 테이블 만들기 명령어는 한번만 실행해야함, 중복되지 않음
 //          statement.execute("CREATE TABLE contacts (name TEXT, phone INTEGER, email TEXT)");
             statement.execute("CREATE TABLE IF NOT EXISTS " + TABLE_CONTACTS + " (" + COLUMN_NAME + " TEXT, '" +  COLUMN_PHONE + "' INTEGER, " + COLUMN_EMAIL + " TEXT)");
 

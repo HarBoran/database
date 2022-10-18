@@ -2,23 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1d8a56e7-5ca9-4590-8ee5-e411df2db536" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/sqlite_jdbc_3_36_0_3.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/music.db" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/musicDB.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musictest/Main.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musictest/model/Albums.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musictest/model/Artists.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musictest/model/Datasource.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/com/musictest/model/Songs.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../music.db" beforeDir="false" afterPath="$PROJECT_DIR$/../music.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testDBEx1/out/production/testDBEx1/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/../testDBEx1/out/production/testDBEx1/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musicDB/com/musictest/Main.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musicDB/com/musictest/Main.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/musicDB/com/musictest/model/Datasource.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/musicDB/com/musictest/model/Datasource.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musictest/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musictest/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/musictest/model/Datasource.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/musictest/model/Datasource.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../testDBEx1/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../testDBEx1/src/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../testjava.db" beforeDir="false" afterPath="$PROJECT_DIR$/../testjava.db" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/402-023/Database/sqlite-jdbc-3.36.0.3.jar",
+    "last_opened_file_path": "C:/Users/402-023/Database/testDBEx1",
     "project.structure.last.edited": "Libraries",
     "project.structure.proportion": "0.27734375",
     "project.structure.side.proportion": "0.2"

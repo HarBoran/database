@@ -50,10 +50,11 @@ public class Main {
             statement.execute("DELETE FROM " + TABLE_CONTACTS + " WHERE " + COLUMN_NAME + " = 'john'");
 
             ResultSet result = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS);
+
             while(result.next()){
                 System.out.println(result.getString(COLUMN_NAME) + " " +
-                        result.getInt(COLUMN_PHONE) + " " +
-                        result.getString(COLUMN_EMAIL));
+                                   result.getInt(COLUMN_PHONE) + " " +
+                                   result.getString(COLUMN_EMAIL));
             }
             result.close();
 

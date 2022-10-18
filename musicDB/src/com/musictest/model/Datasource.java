@@ -68,30 +68,32 @@ public class Datasource {
             }
             result2.close();
 
-//          인덱스 순서데로 정렬함
-//          Collections.sort(artists_id);
-//          Collections.sort(artists_name);
-
             //ArrayList에 저장된 값을 출력함
             for (int i : artists_id) {
                 System.out.println("ID : " + artists_id.get(i - 1) + ", Name = " + artists_name.get(i - 1));
             }
 
-        } catch (SQLException se) {
-            se.printStackTrace();
-            System.out.println("Something went wrong.... " + se.getMessage());
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong.... " + e.getMessage());
         }
     }
 
     public ArrayList<Artists> queryArtists() {
         try (Statement statement = conn.createStatement();
              ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS2)){
+
                 ArrayList<Artists> artists = new ArrayList<>();
+
                 while(results.next()) {
                     Artists artist = new Artists();
                     artist.setId(results.getInt(COLUMN_ARTISTS_ID));
                     artist.setName(results.getString(COLUMN_ARTISTS_NAME));
                     artists.add(artist);
+//                  Artists i = new Artists();
+//                  i.setId(results.getInt(COLUMN_ARTISTS_ID));
+//                  i.setName(results.getString(COLUMN_ARTISTS_NAME));
+//                  artists.add(i);
                 }
             return artists;
         }catch (SQLException e){

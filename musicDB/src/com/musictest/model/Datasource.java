@@ -2,10 +2,12 @@ package com.musictest.model;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class Datasource {
     public static final String DB_NAME = "music.db";
-    public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\402-023\\Database\\musicDB\\" + DB_NAME;
+//  public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\402-023\\Database\\musicDB\\" + DB_NAME;
+    public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
 
     public static final String TABLE_CONTACTS1 = "albums";
     public static final String COLUMN_ALBUMS_ID = "_id";
@@ -22,6 +24,9 @@ public class Datasource {
     public static final String COLUMN_SONGS_TITLE = "title";
     public static final String COLUMN_SONGS_ALBUM = "album";
 
+    public static String ORDER_BY_ASC = "ORDER BY "  + COLUMN_ARTISTS_NAME + " ASC";
+    public static String ORDER_BY_DESC = "ORDER BY "  + COLUMN_ARTISTS_NAME + " DESC";
+    public static String ORDER_BY_NONE = "ORDER BY " + COLUMN_ARTISTS_NAME;
     private Connection conn;
     public boolean open() {
         try {
@@ -77,11 +82,9 @@ public class Datasource {
 //              System.out.println("ID : " + artists_id.get(i - 1) + ", Name = " + artists_name.get(i - 1));
 //          }
 
-
 //            for (Artists i : artists) {;
 //                System.out.println("ID : " + artist.getId(i) + ", Name = " + artists.get());
 //            }
-
 
         } catch (SQLException e) {
             e.printStackTrace();
@@ -89,11 +92,12 @@ public class Datasource {
         }
     }
 
-    public ArrayList<Artists> queryArtists() {
-        try (Statement statement = conn.createStatement();
-             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS2)){
-
-                ArrayList<Artists> artists = new ArrayList<>();
+    public ArrayList<Artists> queryArtists(String orderBy) {
+//        try (Statement statement = conn.createStatement();
+//             ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS2)){
+        try (Statement statement = conn.createStatement()){
+            ResultSet results = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS2 +" "+ orderBy);
+            ArrayList<Artists> artists = new ArrayList<>();
 
                 while(results.next()) {
                     Artists artist = new Artists();

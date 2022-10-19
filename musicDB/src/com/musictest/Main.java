@@ -19,7 +19,11 @@ public class Main {
 
         datasource.SqlReturn();
 
-/*        ArrayList<Artists> artists = datasource.queryArtists();
+//        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_ASC);
+//        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_DESC);
+//        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_NONE);
+
+        ArrayList<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_NONE);
         if(artists==null){
             System.out.println("Can't find an artist");
             return;
@@ -28,7 +32,7 @@ public class Main {
         //for (자료형 변수명 : 배열명)
         for (Artists artist : artists){
             System.out.println("ID = " + artist.getId() + ", Name = " + artist.getName());
-        }*/
+        }
 
         datasource.close();
     }

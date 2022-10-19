@@ -51,27 +51,37 @@ public class Datasource {
             //데이터 베이스로 SQL문을 보내기 위한 개체 생성
             Statement statement = conn.createStatement();
 
-            //Artists 클래스애 접근하기위한 객체 생성
-            Artists artists = new Artists();
-
             //ArrayList 선언
-            ArrayList<Integer> artists_id = new ArrayList();
-            ArrayList<String> artists_name = new ArrayList();
+//          ArrayList<Integer> artists_id = new ArrayList();
+//          ArrayList<String> artists_name = new ArrayList();
+            ArrayList<Artists> artists = new ArrayList();
 
             //result2를 참조변수로 퀴리문을 통해 데이터 베이스를 불러옴
             ResultSet result2 = statement.executeQuery("SELECT * FROM " + TABLE_CONTACTS2);
 
             //선언된 Arraylist에 result2에 저장된 데이터를 저장함
             while (result2.next()) {
-                artists_id.add(result2.getInt(COLUMN_ARTISTS_ID));
-                artists_name.add(result2.getString(COLUMN_ARTISTS_NAME));
+//              artists_id.add(result2.getInt(COLUMN_ARTISTS_ID));
+//              artists_name.add(result2.getString(COLUMN_ARTISTS_NAME));
+                Artists artist = new Artists();
+                artist.setId(result2.getInt(COLUMN_ARTISTS_ID));
+                artist.setName(result2.getString(COLUMN_ARTISTS_NAME));
+              //System.out.println(artist.getId());
+              //System.out.println(artist.getName());
+                artists.add(artist);
             }
             result2.close();
 
             //ArrayList에 저장된 값을 출력함
-            for (int i : artists_id) {
-                System.out.println("ID : " + artists_id.get(i - 1) + ", Name = " + artists_name.get(i - 1));
-            }
+//          for (int i : artists_id) {
+//              System.out.println("ID : " + artists_id.get(i - 1) + ", Name = " + artists_name.get(i - 1));
+//          }
+
+
+//            for (Artists i : artists) {;
+//                System.out.println("ID : " + artist.getId(i) + ", Name = " + artists.get());
+//            }
+
 
         } catch (SQLException e) {
             e.printStackTrace();

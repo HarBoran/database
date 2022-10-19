@@ -19,7 +19,7 @@ public class Main {
 
         datasource.SqlReturn();
 
-        ArrayList<Artists> artists = datasource.queryArtists();
+/*        ArrayList<Artists> artists = datasource.queryArtists();
         if(artists==null){
             System.out.println("Can't find an artist");
             return;
@@ -28,7 +28,7 @@ public class Main {
         //for (자료형 변수명 : 배열명)
         for (Artists artist : artists){
             System.out.println("ID = " + artist.getId() + ", Name = " + artist.getName());
-        }
+        }*/
 
         datasource.close();
     }

@@ -4,9 +4,9 @@ import com.musictest.model.Artists;
 import com.musictest.model.Datasource;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main {
-
     public static void main(String[] args) {
 
         Datasource datasource = new Datasource();
@@ -17,13 +17,18 @@ public class Main {
             return;
         }
 
+        //내가 만듬
         datasource.SqlReturn();
 
 //        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_ASC);
 //        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_DESC);
 //        List<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_NONE);
 
-        ArrayList<Artists> artists = datasource.queryArtists(Datasource.ORDER_BY_NONE);
+        List<Artists> artists = datasource.queryArtists(2);
+
+
+//        ArrayList<Artists> artists = datasource.queryArtists();
+
         if(artists==null){
             System.out.println("Can't find an artist");
             return;

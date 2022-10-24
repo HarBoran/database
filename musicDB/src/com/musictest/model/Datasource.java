@@ -215,29 +215,31 @@ public class Datasource {
 //        }
 //      }
 
-    public List<Songs> querySongsTitle(String songsTitle) {
+    public List<SongsTitle> querySongsTitle(String songsTitle) {
 
         StringBuilder sb = new StringBuilder();
-        sb.append("SELECT " + TABLE_CONTACTS2 + "." +COLUMN_ARTISTS_NAME +", "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME+ "," +TABLE_CONTACTS3+"."+COLUMN_SONGS_TRACK +" FROM "+TABLE_CONTACTS3);
+        sb.append("SELECT " + TABLE_CONTACTS2 + "." +COLUMN_ARTISTS_NAME +", "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME+ " as newname, " +TABLE_CONTACTS3+"."+COLUMN_SONGS_TRACK +" FROM "+TABLE_CONTACTS3);
         sb.append(" INNER JOIN " + TABLE_CONTACTS2 + " ON " + TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ARTIST+" = "+TABLE_CONTACTS2+"."+COLUMN_ARTISTS_ID);
         sb.append(" INNER JOIN " + TABLE_CONTACTS1 + " ON " + TABLE_CONTACTS3+"."+COLUMN_SONGS_ALBUM+" = "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ID);
         sb.append(" WHERE " + TABLE_CONTACTS3+"."+COLUMN_SONGS_TITLE+" = \"" + songsTitle +"\"");
-        sb.append(" ORDER BY " + TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME +" DESC");
+        sb.append(" ORDER BY " + TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME +" ASC");
 
         System.out.println(sb.toString());
 
         try (Statement statement = conn.createStatement();
              ResultSet results = statement.executeQuery(sb.toString())) {
 
-            List<Songs> songs = new ArrayList<>();
+            List<SongsTitle> titles = new ArrayList<>();
 
             while (results.next()) {
-                Songs song = new Songs();
-                song.setTitle(results.getString(COLUMN_SONGS_TITLE));
+                SongsTitle title = new SongsTitle();
+                title.setArtistsName(results.getString(COLUMN_ARTISTS_NAME));
+                title.setAlbumsName(results.getString("newname"));
+                title.setSongsTrack(results.getInt(COLUMN_SONGS_TRACK));
 
-                songs.add(song);
+                titles.add(title);
             }
-            return songs;
+            return titles;
         } catch (SQLException e) {
             System.out.println("Query failed: " + e.getMessage());
             return null;

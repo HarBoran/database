@@ -1,9 +1,6 @@
 package com.musictest;
 
-import com.musictest.model.Albums;
-import com.musictest.model.Artists;
-import com.musictest.model.Datasource;
-import com.musictest.model.Songs;
+import com.musictest.model.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -55,7 +52,7 @@ public class Main {
 //            System.out.println("ArtistName = "+ Datasource.artistName + ", AlbumName = " + album.getName());
 //        }
 
-        List<Songs> songs = datasource.querySongsTitle("Go Your Own Way");
+        List<SongsTitle> songs = datasource.querySongsTitle("Go Your Own Way");
 
         if(songs==null){
             System.out.println("Can't find an artist");
@@ -63,8 +60,8 @@ public class Main {
         }
 
         //for (자료형 변수명 : 배열명)
-        for (Songs song : songs){
-            System.out.println("ArtistName = "+ Datasource.artistName + ", AlbumName = " + song.getTitle());
+        for (SongsTitle song : songs){
+            System.out.println("Artists name = " + song.getArtistsName()+ ", Albums Name = " + song.getAlbumsName()+", SongsTrack = "+song.getSongsTrack());
         }
 
         datasource.close();

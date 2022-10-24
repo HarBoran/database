@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Datasource {
     public static final String DB_NAME = "music.db";
-//  public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\402-023\\Database\\musicDB\\" + DB_NAME;
+    //  public static final String CONNECTION_STRING = "jdbc:sqlite:C:\\Users\\402-023\\Database\\musicDB\\" + DB_NAME;
     public static final String CONNECTION_STRING = "jdbc:sqlite:" + DB_NAME;
 
     public static final String TABLE_CONTACTS1 = "albums";
@@ -28,15 +28,18 @@ public class Datasource {
 //    public static final String ORDER_BY_DESC = "ORDER BY "  + COLUMN_ARTISTS_NAME + " DESC";
 //    public static final String ORDER_BY_NONE = "ORDER BY " + COLUMN_ARTISTS_NAME;
 
-//    public static final String ORDER_BY_ASC = "ORDER_BY_ASC";
-//    public static final String ORDER_BY_DESC = "ORDER_BY_DESC";
-//    public static final String ORDER_BY_NONE = "ORDER_BY_NONE";
+    public static final String ORDER_BY_ASC = "ORDER_BY_ASC";
+    public static final String ORDER_BY_DESC = "ORDER_BY_DESC";
+    public static final String ORDER_BY_NONE = "ORDER_BY_NONE";
 
-    public static final int ORDER_BY_ASC = 1;
-    public static final int ORDER_BY_DESC = 2;
-    public static final int ORDER_BY_NONE = 3;
+//    public static final int ORDER_BY_ASC = 1;
+//    public static final int ORDER_BY_DESC = 2;
+//    public static final int ORDER_BY_NONE = 3;
 
+    public static String artistName;
+    public static String queryEx;
     private Connection conn;
+
     public boolean open() {
         try {
             conn = DriverManager.getConnection(CONNECTION_STRING);
@@ -48,13 +51,13 @@ public class Datasource {
         }
     }
 
-    public void close(){
-        try{
-            if(conn != null) {
+    public void close() {
+        try {
+            if (conn != null) {
                 conn.close();
                 System.out.println("Connection closed.");
             }
-        } catch(SQLException e) {
+        } catch (SQLException e) {
             System.out.println("Couldn't close connection: " + e.getMessage());
         }
     }
@@ -80,8 +83,8 @@ public class Datasource {
                 Artists artist = new Artists();
                 artist.setId(result2.getInt(COLUMN_ARTISTS_ID));
                 artist.setName(result2.getString(COLUMN_ARTISTS_NAME));
-              //System.out.println(artist.getId());
-              //System.out.println(artist.getName());
+                //System.out.println(artist.getId());
+                //System.out.println(artist.getName());
                 artists.add(artist);
             }
             result2.close();
@@ -101,27 +104,29 @@ public class Datasource {
         }
     }
 
-    public List<Artists> queryArtists(int sortingOrder) {
-        //SELECT * FROM artists ORDER BY name ASC;
-        StringBuilder sb = new StringBuilder("SELECT * FROM ");
-        sb.append(TABLE_CONTACTS2);
+    //int로 파라미터 값 받기
+//    public List<Artists> queryArtists(int sortingOrder) {
+//        //SELECT * FROM artists ORDER BY name ASC;
+//        StringBuilder sb = new StringBuilder("SELECT * FROM ");
+//        sb.append(TABLE_CONTACTS2);
+//
+//        if(sortingOrder == ORDER_BY_ASC){
+//            sb.append(" ORDER BY ");
+//            sb.append(COLUMN_ARTISTS_NAME);
+//            sb.append(" ASC");
+//        } else if (sortingOrder == ORDER_BY_DESC) {
+//            sb.append(" ORDER BY ");
+//            sb.append(COLUMN_ARTISTS_NAME);
+//            sb.append(" DESC");
+//        }
 
-        if(sortingOrder == ORDER_BY_ASC){
-            sb.append(" ORDER BY ");
-            sb.append(COLUMN_ARTISTS_NAME);
-            sb.append(" ASC");
-        } else if (sortingOrder == ORDER_BY_DESC) {
-            sb.append(" ORDER BY ");
-            sb.append(COLUMN_ARTISTS_NAME);
-            sb.append(" DESC");
-        }
-
+    //중복되어서 닫아 놓음
 //    public List<Artists> queryArtists(String sortingOrder) {
 //        //SELECT * FROM artists ORDER BY name ASC;
 //        StringBuilder sb = new StringBuilder("SELECT * FROM ");
 //        sb.append(TABLE_CONTACTS2);
 //
-//        if(sortingOrder == "ORDER_BY_ASC"){
+//        if (sortingOrder == "ORDER_BY_ASC") {
 //            sb.append(" ORDER BY ");
 //            sb.append(COLUMN_ARTISTS_NAME);
 //            sb.append(" ASC");
@@ -130,29 +135,30 @@ public class Datasource {
 //            sb.append(COLUMN_ARTISTS_NAME);
 //            sb.append(" DESC");
 //        }
+//
+//        try (Statement statement = conn.createStatement();
+//             ResultSet results = statement.executeQuery(sb.toString())) {
+//            System.out.println(sb.toString());
+//
+//            List<Artists> artists = new ArrayList<>();
+//
+//            while (results.next()) {
+//                Artists artist = new Artists();
+//                artist.setId(results.getInt(COLUMN_ARTISTS_ID));
+//                artist.setName(results.getString(COLUMN_ARTISTS_NAME));
+//                artists.add(artist);
+////                  Artists i = new Artists();
+////                  i.setId(results.getInt(COLUMN_ARTISTS_ID));
+////                  i.setName(results.getString(COLUMN_ARTISTS_NAME));
+////                  artists.add(i);
+//            }
+//            return artists;
+//        } catch (SQLException e) {
+//            System.out.println("Query failed: " + e.getMessage());
+//            return null;
+//        }
 
-        try (Statement statement = conn.createStatement();
-             ResultSet results = statement.executeQuery(sb.toString())){
-            System.out.println(sb.toString());
-
-            List<Artists> artists = new ArrayList<>();
-
-                while(results.next()) {
-                    Artists artist = new Artists();
-                    artist.setId(results.getInt(COLUMN_ARTISTS_ID));
-                    artist.setName(results.getString(COLUMN_ARTISTS_NAME));
-                    artists.add(artist);
-//                  Artists i = new Artists();
-//                  i.setId(results.getInt(COLUMN_ARTISTS_ID));
-//                  i.setName(results.getString(COLUMN_ARTISTS_NAME));
-//                  artists.add(i);
-                }
-            return artists;
-        }catch (SQLException e){
-            System.out.println("Query failed: " + e.getMessage());
-            return null;
-
-            //기존 queryArtists
+    //기존 queryArtists
 //    public ArrayList<Artists> queryArtists() {
 //
 //        try (Statement statement = conn.createStatement();
@@ -175,6 +181,66 @@ public class Datasource {
 //        }catch (SQLException e){
 //            System.out.println("Query failed: " + e.getMessage());
 //            return null;
+
+    //아티스트의 이름을 파라미터로 넣으면
+    //알파벳 순서대로 앨범들이 나오도록 코드를 짜세요
+//    public List<Albums> queryArtistName(String artistName){
+//        this.artistName = artistName;
+//
+//        StringBuilder sb = new StringBuilder();
+//        sb.append( "SELECT " + TABLE_CONTACTS1 + "."+ COLUMN_ALBUMS_NAME);
+//        sb.append(" FROM " + TABLE_CONTACTS1);
+//        sb.append(" INNER JOIN "+ TABLE_CONTACTS2);
+//        sb.append(" ON " + TABLE_CONTACTS1 + "."+COLUMN_ALBUMS_ARTIST +" = " + TABLE_CONTACTS2 + "." + COLUMN_ARTISTS_ID);
+//        sb.append(" WHERE "+ TABLE_CONTACTS2 + "." +COLUMN_ARTISTS_NAME + " = \"" + artistName + "\"");
+//        sb.append(" ORDER BY " + TABLE_CONTACTS1 +"."+ COLUMN_ALBUMS_NAME +" ASC" );
+//
+//        queryEx =  sb.toString();
+//        System.out.println(artistName);
+//
+//        try (Statement statement = conn.createStatement();
+//             ResultSet results = statement.executeQuery(sb.toString())){
+//
+//            List<Albums> albums = new ArrayList<>();
+//
+//            while (results.next()) {
+//                Albums album = new Albums();
+//                album.setName(results.getString(COLUMN_ALBUMS_NAME));
+//                albums.add(album);
+//            }
+//            return albums;
+//        } catch (SQLException e) {
+//            System.out.println("Query failed: " + e.getMessage());
+//            return null;
+//        }
+//      }
+
+    public List<Songs> querySongsTitle(String songsTitle) {
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT " + TABLE_CONTACTS2 + "." +COLUMN_ARTISTS_NAME +", "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME+ "," +TABLE_CONTACTS3+"."+COLUMN_SONGS_TRACK +" FROM "+TABLE_CONTACTS3);
+        sb.append(" INNER JOIN " + TABLE_CONTACTS2 + " ON " + TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ARTIST+" = "+TABLE_CONTACTS2+"."+COLUMN_ARTISTS_ID);
+        sb.append(" INNER JOIN " + TABLE_CONTACTS1 + " ON " + TABLE_CONTACTS3+"."+COLUMN_SONGS_ALBUM+" = "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ID);
+        sb.append(" WHERE " + TABLE_CONTACTS3+"."+COLUMN_SONGS_TITLE+" = \"" + songsTitle +"\"");
+        sb.append(" ORDER BY " + TABLE_CONTACTS1+"."+COLUMN_ALBUMS_NAME +" DESC");
+
+        System.out.println(sb.toString());
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sb.toString())) {
+
+            List<Songs> songs = new ArrayList<>();
+
+            while (results.next()) {
+                Songs song = new Songs();
+                song.setTitle(results.getString(COLUMN_SONGS_TITLE));
+
+                songs.add(song);
+            }
+            return songs;
+        } catch (SQLException e) {
+            System.out.println("Query failed: " + e.getMessage());
+            return null;
         }
     }
 }

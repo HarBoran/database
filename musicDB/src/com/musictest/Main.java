@@ -64,6 +64,8 @@ public class Main {
             System.out.println("Artists name = " + song.getArtistsName()+ ", Albums Name = " + song.getAlbumsName()+", SongsTrack = "+song.getSongsTrack());
         }
 
+        datasource.querySongsMetaData();
+
         datasource.close();
     }
 }

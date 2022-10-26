@@ -66,6 +66,10 @@ public class Main {
 
         datasource.querySongsMetaData();
 
+        datasource.songCount();
+
+        datasource.TitleCount();
+
         datasource.close();
     }
 }

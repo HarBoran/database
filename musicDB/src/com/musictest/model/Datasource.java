@@ -241,6 +241,7 @@ public class Datasource {
                 titles.add(title);
             }
             return titles;
+
         } catch (SQLException e) {
             System.out.println("Query failed: " + e.getMessage());
             return null;
@@ -265,4 +266,55 @@ public class Datasource {
             System.out.println("Something went wrong.... " + e.getMessage());
         }
     }
+
+    public void songCount() {
+//        String sql = "SELECT COUNT(DISTINCT title) as title FROM " + TABLE_CONTACTS3;
+        String sql = "SELECT DISTINCT title FROM " + TABLE_CONTACTS3;
+
+        try (Statement statement = conn.createStatement();
+             ResultSet results = statement.executeQuery(sql)) {
+
+            List<String> sc = new ArrayList<>();
+
+            while (results.next()) {
+                sc.add(results.getString("title"));
+            }
+
+//      System.out.println(sc);
+            System.out.println(sc.get(1000));
+
+            System.out.println(sc.size());
+
+//            for (int i = 0; i < sc.size(); i++) {
+//                System.out.println(sc.get(i));
+//            }
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong.... " + e.getMessage());
+        }
+    }
+
+    public void TitleCount(){
+
+        StringBuilder sb = new StringBuilder();
+        sb.append("SELECT " + TABLE_CONTACTS2+ "." + COLUMN_ARTISTS_NAME+", COUNT(*) FROM "+ TABLE_CONTACTS3);
+        sb.append(" INNER JOIN "+TABLE_CONTACTS1+" ON "+TABLE_CONTACTS3+"."+COLUMN_SONGS_ALBUM+" = "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ID);
+        sb.append(" INNER JOIN "+ TABLE_CONTACTS2+" ON "+TABLE_CONTACTS1+"."+COLUMN_ALBUMS_ARTIST+" = "+TABLE_CONTACTS2+"."+COLUMN_ARTISTS_ID);
+        sb.append(" GROUP BY "+TABLE_CONTACTS2+"."+COLUMN_ARTISTS_ID);
+        sb.append(" ORDER BY COUNT(*) DESC;");
+
+        System.out.println(sb);
+
+        try(Statement statement = conn.createStatement();
+        ResultSet results = statement.executeQuery(sb.toString())){
+
+
+        }catch (SQLException e) {
+            e.printStackTrace();
+            System.out.println("Something went wrong.... " + e.getMessage());
+        }
+
+    }
+
 }
